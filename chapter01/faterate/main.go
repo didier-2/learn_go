@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"go.learn/faterate/calc"
+	calc2 "go.learn/chapter01/faterate/calc"
 )
 
 func main() {
@@ -125,9 +125,9 @@ func getHealthinessSuggestionFromMale(age int, fatRate float64) {
 
 func calcFatRate(weight float64, tall float64, age int, sex string) float64 {
 	//计算体脂
-	bmi := calc.CalcBMI(tall, weight)
+	bmi := calc2.CalcBMI(tall, weight)
 	//bmi := weight / (tall * tall)
-	fatRate := calc.CalcFatRate(bmi, age, sex) //(1.2*bmi + 0.23*float64(age) - 5.4 - 10.8*float64(sexWeight)) / 100
+	fatRate := calc2.CalcFatRate(bmi, age, sex) //(1.2*bmi + 0.23*float64(age) - 5.4 - 10.8*float64(sexWeight)) / 100
 	fmt.Println("体脂率是：", fatRate)
 	return fatRate
 }

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-	"go.learn/faterate/calc"
+	calc2 "go.learn/chapter01/faterate/calc"
 )
 
 func main() {
@@ -27,8 +27,8 @@ func main() {
 			fmt.Println("weight", weight)
 			fmt.Println("age   ", age)
 			//计算
-			bmi := calc.CalcBMI(tall, weight)
-			fatrate := calc.CalcFatRate(bmi, age, sex)
+			bmi := calc2.CalcBMI(tall, weight)
+			fatrate := calc2.CalcFatRate(bmi, age, sex)
 			fmt.Println("fatRate", fatrate)
 
 			//评估结果
