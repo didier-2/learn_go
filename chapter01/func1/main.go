@@ -18,6 +18,14 @@ func main() {
 	fmt.Println("done closureMain,sleep somewhile")
 	time.Sleep(10 * time.Second)
 
+	deferGuess()
+	fmt.Println("done closureMain,sleep somewhile")
+	time.Sleep(10 * time.Second)
+
+	openFile()
+	fmt.Println("done closureMain,sleep somewhile")
+	time.Sleep(10 * time.Second)
+
 	//close call
 	fmt.Println(calcSum(21, 12, 12, 123, 23, 123, 123))
 	fmt.Println(calcSum(34, 3, 4, 343, 434, 353, 53, 53))

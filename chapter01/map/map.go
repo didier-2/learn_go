@@ -7,6 +7,9 @@ func main() {
 	//m1["a"]=1
 	fmt.Println("m1没有实例化，直接取数：", m1)
 	m2 := map[string]int{}
+	//var m2 map[string]int = map[string]int{} //或者这样子创建
+	m2["小丁"] = 2
+	fmt.Println(m2)
 	m3 := map[string]int{"小丁": 92, "小黄": 90, "小彬": 100}
 	fmt.Println(m1, m2, m3)
 

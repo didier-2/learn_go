@@ -15,19 +15,19 @@ func main() {
 	var fatRate float64
 
 	for i := 0; i < 3; i++ {
-		name, weight, tall, age, sex := getInfoFromInput()
+		_, weight, tall, _, sex := getInfoFromInput()
 
 		bmi := caleBMI(tall, weight)
 		bmis[i] = bmi
 
-		if sex == "男" {
-			sexWeight = 1
-		} else if sex == "女" {
-			sexWeight = 0
-		}
+		//if sex == "男" {
+		//	sexWeight = 1
+		//} else if sex == "女" {
+		//	sexWeight = 0
+		//}
 
-		var femalefatRate float64 = (1.2*bmis[i] + 0.23*float64(ages[i]) - 5.4 - 10.8*float64(0)) / 100
-		var malefatRate float64 = (1.2*bmis[i] + 0.23*float64(ages[i]) - 5.4 - 10.8*float64(1)) / 100
+		//var femalefatRate float64 = (1.2*bmis[i] + 0.23*float64(ages[i]) - 5.4 - 10.8*float64(0)) / 100
+		//var malefatRate float64 = (1.2*bmis[i] + 0.23*float64(ages[i]) - 5.4 - 10.8*float64(1)) / 100
 
 		fatRates[i] = fatRate
 		fmt.Println("体脂率是：", fatRate)
