@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/spf13/cobra"
+	//go_learn_tools "go.learn.tools"
 	calc2 "go.learn/chapter01/faterate/calc"
 )
 
@@ -15,6 +16,18 @@ func main() {
 		weight float64
 		age    int
 	)
+	//argument := os.Args
+	//fmt.Println(argument)
+	//name = argument[1]
+	//sex = argument[2]
+	//tall = argument[3]
+	//weight = argument[4]
+	//age = argument[5]
+	//fmt.Println("name  ", name)
+	//fmt.Println("sex   ", sex)
+	//fmt.Println("tall  ", tall)
+	//fmt.Println("weight", weight)
+	//fmt.Println("age   ", age)
 
 	cmd := &cobra.Command{
 		Use:   "healthcheck",
@@ -32,6 +45,7 @@ func main() {
 			fmt.Println("fatRate", fatrate)
 
 			//评估结果
+			//fmt.Println(go_learn_tools.Max(3, 5))
 
 		},
 	}

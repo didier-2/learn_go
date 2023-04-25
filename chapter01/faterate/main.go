@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	calc2 "go.learn/chapter01/faterate/calc"
+	"runtime/debug"
+	_ "runtime/debug"
 )
 
 func main() {
@@ -14,11 +16,24 @@ func main() {
 	}
 }
 
+func recoverMainBody() {
+	if re := recover(); re != nil {
+		fmt.Printf("warning:catch critical error: %v\n", re)
+		debug.PrintStack()
+	}
+}
+
 func mainFatRateBody() {
+	defer recoverMainBody()
+
 	weight, tall, age, _, sex := getMaterialsFromInput()
 
-	//fatRate:=calc.CalcFatRate()
-	fatRate := calcFatRate(weight, tall, age, sex)
+	//fatRate:=calc.FatRate()
+	fatRate, err := calcFatRate(weight, tall, age, sex)
+	if err != nil {
+		fmt.Println("warning:计算体脂率出错，不能再继续")
+		return
+	}
 
 	//getHealthinessSuggestions(sex, age, fatRate)
 	getHealthinessSuggestions(age, fatRate, getHealthinessSuggestionFromMale)
@@ -33,7 +48,6 @@ func getHealthinessSuggestions(age int, fatRate float64, getSuggestion func(age 
 	//} else {
 	//	getHealthinessSuggestionFromFemale(age, fatRate)
 	//}
-
 	getSuggestion(age, fatRate)
 }
 
@@ -123,13 +137,16 @@ func getHealthinessSuggestionFromMale(age int, fatRate float64) {
 	}
 }
 
-func calcFatRate(weight float64, tall float64, age int, sex string) float64 {
+func calcFatRate(weight float64, tall float64, age int, sex string) (fatRate float64, err error) {
 	//计算体脂
-	bmi := calc2.CalcBMI(tall, weight)
+	bmi, err := calc2.CalcBMI(tall, weight)
+	if err != nil {
+		return 0, err
+	}
 	//bmi := weight / (tall * tall)
-	fatRate := calc2.CalcFatRate(bmi, age, sex) //(1.2*bmi + 0.23*float64(age) - 5.4 - 10.8*float64(sexWeight)) / 100
+	fatRate = calc2.CalcFatRate(bmi, age, sex) //(1.2*bmi + 0.23*float64(age) - 5.4 - 10.8*float64(sexWeight)) / 100
 	fmt.Println("体脂率是：", fatRate)
-	return fatRate
+	return
 }
 
 func getMaterialsFromInput() (float64, float64, int, int, string) {
