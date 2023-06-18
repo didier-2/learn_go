@@ -25,7 +25,14 @@ func main() {
 	}}
 	leader := vg.goRun()
 	fmt.Println(leader)
+	leader.Distribute()
 
+	var stdXQ = &student{name: "小强"}
+	var ldXQ Leader = Leader(*stdXQ)
+	ldXQ.Distribute()
+
+	//bytesTest1 := []byte{}
+	//var str1 string=string(bytesTest1)
 }
 func getScoresOfstudent(name string) (Math, Chinese, English) {
 	//TODO
@@ -62,7 +69,23 @@ func (g *voteGate) goRun() *Leader {
 	return nil
 }
 
+////使用嵌套对象定义（继承）方式来定义班长
+//type Leader struct {
+//	student
+//}
+
+// 使用类型重定义方式来定义班长
 type Leader student
+
+func (l *Leader) Distribute() {
+	fmt.Println("发作业")
+}
+
+type fooooTestFuncRedefine func()
+
+func (f *fooooTestFuncRedefine) test111() {
+
+}
 
 type student struct {
 	name     string
