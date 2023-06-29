@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"sort"
 )
 
 type Math = int
@@ -81,9 +82,13 @@ func (l *Leader) Distribute() {
 	fmt.Println("发作业")
 }
 
-type fooooTestFuncRedefine func()
+type FooooTestFuncRedefine []string //类型可以是任意的
 
-func (f *fooooTestFuncRedefine) test111() {
+func (f FooooTestFuncRedefine) Sort() {
+	sort.Strings(f)
+}
+
+func (f *FooooTestFuncRedefine) test111() {
 
 }
 
