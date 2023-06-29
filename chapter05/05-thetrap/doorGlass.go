@@ -2,7 +2,17 @@ package main
 
 import "fmt"
 
+var _ Door = &GlassDoor{} //关键点
+
 type GlassDoor struct {
+}
+
+func (d *GlassDoor) Unlock() {
+	fmt.Println("GlassDoor Unlock")
+}
+
+func (d *GlassDoor) Lock() {
+	fmt.Println("GlassDoor Lock")
 }
 
 func (*GlassDoor) Open() {
