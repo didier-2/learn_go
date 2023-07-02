@@ -11,7 +11,8 @@ func main() {
 		//countDict()
 		//countDictGoroutineSafe()
 		//countDictGoroutineForgetUnlock()
-		countDictLockPrice()
+		//countDictLockPrice()
+		countDictGoroutineSafeRW()
 	}
 
 }
@@ -46,6 +47,38 @@ func countDictGoroutineSafe() {
 		}()
 	}
 	wg.Wait()
+	fmt.Println("预计有：", 100*5000)
+	fmt.Println("总字数：", totalNum)
+}
+
+func countDictGoroutineSafeRW() {
+	totalNum := 0
+	totalNumlock := sync.RWMutex{}
+
+	wg := sync.WaitGroup{}
+	wg.Add(5000)
+
+	go func() {
+		result := map[int]struct{}{}
+		for {
+			totalNumlock.Lock()
+			//fmt.Println(totalNum)
+			result[totalNum] = struct{}{}
+			totalNumlock.Unlock()
+		}
+
+		fmt.Println("result", result)
+	}()
+	for i := 0; i < 5000; i++ {
+		go func() {
+			defer wg.Done()
+			totalNumlock.Lock()
+			totalNum += 100 //totalNum=totalNum+100//注意这里有重复覆盖的问题
+			totalNumlock.Unlock()
+		}()
+	}
+	wg.Wait()
+	time.Sleep(5 * time.Second)
 	fmt.Println("预计有：", 100*5000)
 	fmt.Println("总字数：", totalNum)
 }
