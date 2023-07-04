@@ -7,29 +7,49 @@ type rank struct {
 }
 
 var globalRank = &rank{}
-var globalRankInitialized bool = false
-var globalRankInitializedLock sync.Mutex
-
-func init() {
-	globalRank.standard = []string{"Asia"}
-}
+var once sync.Once = sync.Once{}
 
 func initGlobalRankStandard(standard []string) {
-	globalRankInitializedLock.Lock()
-	defer globalRankInitializedLock.Unlock()
-	if globalRankInitialized {
-		return
-	}
+	once.Do(func() {
+		globalRank.standard = standard
+	})
+}
 
-	globalRank.standard = standard
-	globalRankInitialized = true
+var facStore = &dbFactoryStore{}
+
+type dbFactoryStore struct {
+	store map[string]DBFactory
+}
+
+type Conn struct {
+}
+type DBFactory interface {
+	GetConnection() *Conn
+}
+
+func initMysqlfac(connStr string) DBFactory {
+	return &MysqlDBFactory{}
+}
+
+type MysqlDBFactory struct {
+	once sync.Once
+}
+
+func (MysqlDBFactory) GetConnection() *Conn {
+	once.Do(func() {
+		initMysqlfac("")
+	})
+
+	//todo
+	return nil
 }
 
 func main() {
-	standard := []string{"asia"}
-	for i := 0; i < 10; i++ {
-		go func() {
-			initGlobalRankStandard(standard)
-		}()
-	}
+	//standard := []string{"asia"}
+	//for i := 0; i < 10; i++ {
+	//	go func() {
+	//		initGlobalRankStandard(standard)
+	//	}()
+	//}
+	//connStr:="xxxxxxxxxx"
 }
