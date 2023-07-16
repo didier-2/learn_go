@@ -1,6 +1,9 @@
 package main
 
-import "sync"
+import (
+	"fmt"
+	"sync"
+)
 
 type rank struct {
 	standard []string
@@ -39,12 +42,27 @@ func (MysqlDBFactory) GetConnection() *Conn {
 	once.Do(func() {
 		initMysqlfac("")
 	})
-
+	/////////////////////////////////////////////////////////////////////////////////////////
 	//todo
 	return nil
 }
 
+var counter int = 0
+var counterOnce sync.Once
+
+type School struct {
+	classroomLocation map[string]string
+}
+
 func main() {
+	for i := 0; i < 10; i++ {
+		fmt.Println("第x次", i)
+		counterOnce.Do(func() {
+			fmt.Println("初始化")
+			counter++
+		})
+	}
+	fmt.Println("最终结果：", counter)
 	//standard := []string{"asia"}
 	//for i := 0; i < 10; i++ {
 	//	go func() {
