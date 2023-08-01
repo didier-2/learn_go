@@ -7,6 +7,8 @@ go 1.20
 require (
 	github.com/armstrongli/go-bmi v0.0.1
 	github.com/spf13/cobra v1.7.0
+	gopkg.in/yaml.v2 v2.4.0
+	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 //github.com/armstrongli/go-bmi v0.0.1
 //go.learn.tools v0.0.0-00010101000000-000000000000
 )
