@@ -15,7 +15,7 @@ type Store struct {
 
 //
 //func (s *Store)Close(){
-//
+//i
 //}
 
 func (s *Store) instrument() {
