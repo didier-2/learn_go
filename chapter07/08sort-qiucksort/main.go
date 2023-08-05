@@ -1,11 +1,12 @@
 package main
 
 import (
+	"crypto/rand"
 	"fmt"
-	"math/rand"
+	"math/big"
 )
 
-func quickSort(arr *[]int, start, end int) {
+func quickSort(arr *[]int64, start, end int) {
 	//确认终止条件，否则将无限递归下去
 	if start >= end {
 		return
@@ -44,9 +45,13 @@ func quickSort(arr *[]int, start, end int) {
 
 func main() {
 	arrSize := 10000000
-	arr := []int{}
+	arr := []int64{}
+	//for i := 0; i < arrSize; i++ {
+	//	arr = append(arr, rand.Intn(50))
+	//}
 	for i := 0; i < arrSize; i++ {
-		arr = append(arr, rand.Intn(50))
+		all, _ := rand.Int(rand.Reader, big.NewInt(3000))
+		arr = append(arr, all.Int64())
 	}
 	fmt.Println(arr)
 	quickSort(&arr, 0, arrSize-1)

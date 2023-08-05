@@ -10,7 +10,7 @@ type Calc struct {
 }
 
 func (Calc) BMI(person *apis.PersonalInformation) (float64, error) {
-	bmi, err := gobmi.BMI(person.Weight, person.Tall)
+	bmi, err := gobmi.BMI(float64(person.Weight), float64(person.Tall))
 	if err != nil {
 		log.Println("error when calculating bmi :", err)
 		return -1, err
@@ -23,5 +23,5 @@ func (c *Calc) FatRate(person *apis.PersonalInformation) (float64, error) {
 	if err != nil {
 		return -1, err
 	}
-	return gobmi.CalcFatRate(bmi, person.Age, person.Sex), nil
+	return gobmi.CalcFatRate(bmi, int(person.Age), person.Sex), nil
 }

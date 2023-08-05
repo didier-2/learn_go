@@ -66,9 +66,9 @@ func readFile(filepath string) {
 	personalInformation := apis.PersonalInformation{}
 	json.Unmarshal(data, &personalInformation) //todo handle error
 	fmt.Println("开始计算体脂信息", personalInformation)
-	bmi, err := gobmi.BMI(personalInformation.Weight, personalInformation.Tall) //todo handle error
+	bmi, err := gobmi.BMI(float64(personalInformation.Weight), float64(personalInformation.Tall)) //todo handle error
 	fmt.Printf("%s的bmi是：%v", personalInformation.Name, bmi)
-	fatRate := gobmi.CalcFatRate(bmi, personalInformation.Age, personalInformation.Sex)
+	fatRate := gobmi.CalcFatRate(bmi, int(personalInformation.Age), personalInformation.Sex)
 	fmt.Printf("%s的体脂率是：%v", personalInformation.Name, fatRate)
 
 }
