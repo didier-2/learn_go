@@ -21,7 +21,7 @@ func withDeadline() {
 	go mobile(ctx)
 	go game(ctx)
 
-	time.Sleep(3 * time.Second)
+	time.Sleep(5 * time.Second)
 }
 func tv(ctx context.Context) {
 	for {
