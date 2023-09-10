@@ -2,6 +2,11 @@ syntax = "proto3";
 package apis;
 option go_package = "./";
 
+service RankService{
+  rpc Register(PersonalInformation)returns(PersonalInformation){}
+//  rpc RegisterPersons(stream PersonalInformation)returns(PersonalInformationList){}
+}
+
 message PersonalInformationList{
   repeated PersonalInformation items=1;
 }
