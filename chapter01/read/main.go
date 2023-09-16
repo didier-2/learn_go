@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-	//go_learn_tools "go.learn.tools"
 	calc2 "go.learn/chapter01/faterate/calc"
 )
 

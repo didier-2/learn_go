@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"go.learn/chapter13/02grpc/server/ranks"
 	"go.learn/pkg/apis"
 	"google.golang.org/grpc"
 	"log"
@@ -21,8 +22,8 @@ func startGRPCServer(ctx context.Context) {
 	}
 	s := grpc.NewServer([]grpc.ServerOption{}...)
 	apis.RegisterRankServiceServer(s, &rankServer{
-		persons:  map[string]*apis.PersonalInformation{},
-		personCh: make(chan *apis.PersonalInformation),
+		rankS:    ranks.NewFatRateRank(),
+		personCh: make(chan *apis.PersonalInformation, 1024),
 	})
 	go func() {
 		select {

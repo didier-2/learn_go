@@ -1,6 +1,8 @@
 package frinterface
 
-import "go.learn/pkg/apis"
+import (
+	"go.learn/pkg/apis"
+)
 
 type ServerInterface interface {
 	RegisterPersonalInformation(pi *apis.PersonalInformation) error

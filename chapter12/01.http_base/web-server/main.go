@@ -10,8 +10,8 @@ func main() {
 	m.Handle("/hallo", http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
 		writer.Write([]byte(`hallo`))
 	}))
-	m.Handle("/rank", http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
-		writer.Write([]byte(`rank`))
+	m.Handle("/ranks", http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+		writer.Write([]byte(`ranks`))
 	}))
 	m.Handle("/history/xiaoqiang", http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
 		writer.Write([]byte(`history/xiaoqiang`))

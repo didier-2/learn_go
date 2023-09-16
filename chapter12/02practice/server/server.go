@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
-	"gorm.io/driver/mysql"
-
 	"go.learn/chapter12/02practice/frinterface"
 	"go.learn/pkg/apis"
+	"gorm.io/driver/mysql"
+
 	"gorm.io/gorm"
 	"log"
 	"net/http"
@@ -68,7 +68,7 @@ func main() {
 			c.JSON(http.StatusOK, resp)
 		}
 	})
-	r.GET("/rank/:name", func(c *gin.Context) {
+	r.GET("/ranks/:name", func(c *gin.Context) {
 		name := c.Param("name")
 		if fr, err := rankServer.GetFatRate(name); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{
